@@ -567,6 +567,7 @@ class ModelAdmin(BaseModelAdmin):
     paginator = Paginator
     preserve_filters = True
     inlines = []
+    group_name = None
 
     # Custom templates (designed to be over-ridden in subclasses)
     add_form_template = None

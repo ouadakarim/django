@@ -479,11 +479,13 @@ class AdminSite:
                 except NoReverseMatch:
                     pass
 
-            if app_label in app_dict:
-                app_dict[app_label]['models'].append(model_dict)
+            group_name = model_admin.group_name or app_label
+
+            if group_name in app_dict:
+                app_dict[group_name]['models'].append(model_dict)
             else:
-                app_dict[app_label] = {
-                    'name': apps.get_app_config(app_label).verbose_name,
+                app_dict[group_name] = {
+                    'name': model_admin.group_name or apps.get_app_config(app_label).verbose_name,
                     'app_label': app_label,
                     'app_url': reverse(
                         'admin:app_list',
